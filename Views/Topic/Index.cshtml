@@ -1,0 +1,43 @@
+﻿@model IEnumerable<QHub.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Topics</h1>
+<table class="table">
+    <tbody>
+        @foreach (var subject in Model)
+        {
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(modelItem => subject.Name):</b> @Html.DisplayFor(modelItem => subject.Name)
+                </td>
+                <td>
+                    <a asp-action="Create" asp-route-id="@subject.Id">Add Topic</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="table">
+                        <tbody>
+                            @foreach (var topic in subject.Topics)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => topic.Name)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@topic.Id">Edit</a> |
+                                        <a asp-action="Delete" asp-route-id="@topic.Id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

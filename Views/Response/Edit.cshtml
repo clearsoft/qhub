@@ -1,0 +1,54 @@
+﻿@model QHub.ViewModels.NewResponseViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Review Response</h1>
+<hr />
+<div>
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger" />
+        <input type="hidden" asp-for="Response.Id" />
+        <div class="text-black">
+            <h5>Topic:&nbsp;
+                @Html.DisplayFor(m => m.Question.TopicName, new {  @class = "form-control" })
+            </h5>
+        </div>
+        <b> @Html.DisplayNameFor(m => m.Question.QuestionText)</b><br />
+        <div style="min-height:100px;border:solid black 1px; padding:5px;">
+            @Html.DisplayFor(m => m.Question.QuestionText)<br />
+        </div>
+        <br /><b> @Html.DisplayNameFor(m => m.Question.IdealResponse)</b><br />
+        <div style="min-height:100px;border:solid black 1px; padding:5px;" class="form-group">
+           @Html.DisplayFor(m => m.Question.IdealResponse)<br />
+        </div style="min-height:100px;border:solid black 1px; padding:5px;">
+            @Html.HiddenFor(m => m.Response.ResponseText)
+        <br /><b> @Html.DisplayNameFor(m => m.Response.ResponseText)</b><br />
+        <div class="form-group" style="min-height:100px;border:solid black 1px; padding:5px;">
+            @Html.DisplayFor(m => m.Response.ResponseText)<br />
+        </div>
+        <br/>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Response.Comments, new { @class = "control-label" })<br />
+            @Html.TextAreaFor(m => m.Response.Comments, 5,120, new { @class = "form-control", style = "height:150px;" })<br />
+            @Html.ValidationMessageFor(m => m.Response.Comments)
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(m => m.Response.Mark)<br />
+            @Html.TextBoxFor(m => m.Response.Mark, "{0:n1}",new { style = "font-size:24px;width:70px;text-align:center;"})<br />
+            @Html.ValidationMessageFor(m => m.Response.Mark)
+        </div>
+        <br />
+        <div class="form-group">
+            <input style="width:150px;" type="submit" value="Save" class="btn btn-success" />
+            @Html.ActionLink("Cancel",nameof(Index), new { id = Model.Question.Id }, new { style = "width:150px;",  @class = "btn btn-primary" })
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

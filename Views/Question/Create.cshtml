@@ -1,0 +1,57 @@
+﻿@model QHub.ViewModels.NewQuestionViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create new question</h1>
+<h2>Subject: @Model.Subject.Name</h2>
+<hr />
+<div class="row col-md-7">
+    <form asp-action="Create">
+        @Html.HiddenFor(m => m.Subject.Id)
+        <table class="table">
+            <tr>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Question.TopicName" class="control-label"></label>
+                    <input asp-for="Question.TopicName" class="form-control" />
+                    <span asp-validation-for="Question.TopicName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question.QuestionText" class="control-label"></label><br />
+                    @Html.TextAreaFor(m => m.Question.QuestionText,10,120, new { style="width:100%;min-height:150px;"})
+                    <span asp-validation-for="Question.QuestionText" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question.IdealResponse" class="control-label"></label>
+                    @Html.TextAreaFor(m => m.Question.IdealResponse,10,120, new { style="width:100%;min-height:150px;"})
+                    <span asp-validation-for="Question.IdealResponse" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question.OpenDate" class="control-label"></label>
+                    <input asp-for="Question.OpenDate" class="form-control" type="date" style="width:215px;" />
+                    <span asp-validation-for="Question.OpenDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question.CloseDate" class="control-label"></label>
+                    <input asp-for="Question.CloseDate" class="form-control" type="date" style="width:215px;" />
+                    <span asp-validation-for="Question.CloseDate" class="text-danger"></span>
+                </div>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" style="width:150px;" value="Save" class="btn btn-success" />
+            <a asp-action="Index" style="width:150px;" class="btn btn-primary">Back</a>
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

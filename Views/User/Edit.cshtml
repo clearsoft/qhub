@@ -1,0 +1,90 @@
+﻿@model QHub.ViewModels.EditUserViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit User</h1>
+<hr />
+<div class="col-md-6">
+    @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+    {
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @Html.HiddenFor(m => m.User.Id)
+        <table class="table" style="vertical-align:middle;">
+            <tr>
+                <th style="width:150px;text-align:right;">
+                    @Html.DisplayNameFor(m => m.User.UserName)
+                </th>
+                <td style="width:1px;">&nbsp;</td>
+                <td>
+                    @Html.DisplayFor(m => m.User.UserName)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    @Html.DisplayNameFor(m => m.User.FirstName)
+                </th>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.User.FirstName, new { style = "width:100%;" })<br />
+                    @Html.ValidationMessageFor(m => m.User.FirstName)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    @Html.DisplayNameFor(m => m.User.LastName)
+                </th>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.User.LastName, new { style = "width:100%;" })<br />
+                    @Html.ValidationMessageFor(m => m.User.LastName)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    @Html.DisplayNameFor(m => m.User.Email)
+                </th>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(m => m.User.Email, new { style = "width:100%;" })<br />
+                    @Html.ValidationMessageFor(m => m.User.Email)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:right;">Teacher</th>
+                <td>&nbsp;</td>
+                <td>
+                    @Html.CheckBoxFor(m => m.IsTeacher)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:right;">
+                    @Html.DisplayName("Enrolled subjects")
+                </th>
+                <td>&nbsp;</td>
+                <td>
+                    @for (int i = 0; i < Model.Subjects.Count; i++)
+                    {
+                        <div>
+                            @Html.HiddenFor(x => x.Subjects[i].Id)
+                            @Html.CheckBoxFor(x => x.Subjects[i].IsSelected)
+                            @Html.LabelFor(x => x.Subjects[i].IsSelected, Model.Subjects[i].Name)
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input style="width:150px;" type="submit" value="Save" class="btn btn-success" />
+            <a style="width:150px;" class="btn btn-primary" asp-action="Index">Cancel</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

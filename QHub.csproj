@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-QHub-FA42E0F4-96B8-4096-9B66-F7849D70220D</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Topic\**" />
+    <Content Remove="Views\Topic\**" />
+    <EmbeddedResource Remove="Views\Topic\**" />
+    <None Remove="Views\Topic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\TopicController.cs" />
+    <Compile Remove="Models\Topic.cs" />
+    <Compile Remove="ViewModels\NewTopicViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Question\AllResponses.cshtml" />
+    <Content Remove="Views\Question\Details.cshtml" />
+    <Content Remove="Views\Question\Responses.cshtml" />
+    <Content Remove="Views\Response\Create.cshtml" />
+    <Content Remove="Views\Response\Delete.cshtml" />
+    <Content Remove="Views\Response\Details.cshtml" />
+    <Content Remove="Views\Response\Respond.cshtml" />
+    <Content Remove="Views\Subject\Details.cshtml" />
+    <Content Remove="Views\Subject\Remove.cshtml" />
+    <Content Remove="Views\User\Create.cshtml" />
+    <Content Remove="Views\User\Delete.cshtml" />
+    <Content Remove="Views\User\Details.cshtml" />
+    <Content Remove="Views\User\Respond.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.6" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqLite" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
+  </ItemGroup>
+
+</Project>

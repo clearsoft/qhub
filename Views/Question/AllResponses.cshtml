@@ -1,0 +1,48 @@
+﻿@model IEnumerable<QHub.ViewModels.NewResponsesListViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Responses</h1>
+@foreach (var item in Model)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(item => item.Question.QuestionText)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Question.QuestionText)
+                </td>
+            </tr>
+            <tr>
+                <table>
+                    @foreach (var item2 in item.Responses)
+                    {
+                        <tr>
+                            <td>
+                                @item2.ResponseText
+                            </td>
+                            <td>
+                                @item2.Comments
+                            </td>
+                            <td>
+                                @item2.Mark
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item2.Id">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </tr>
+        </tbody>
+    </table>
+}

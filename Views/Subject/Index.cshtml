@@ -1,0 +1,40 @@
+﻿@using QHub.Classes
+@model IEnumerable<QHub.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Subjects</h1>
+<hr/>
+<p>
+    
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <h5>@Html.DisplayNameFor(m => m.Name)</h5>
+            </th>
+            <th style="text-align:right;"><a asp-action="Create" class="btn btn-success">Create New</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="table-info">
+                <td style="vertical-align:middle;">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td style="text-align:right;">
+                    <a style="width:100px;" asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                    @if (User.IsInRole(Enumerations.QHubRoles.Admin.ToString()))
+                    {
+                        <a style="width:100px;" asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

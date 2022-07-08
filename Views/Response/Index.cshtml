@@ -1,0 +1,76 @@
+﻿@model IEnumerable<QHub.Models.Question>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Responses</h1>
+<hr />
+<div style="text-align:right;width:100%"> @Html.ActionLink("Return to list", nameof(Index), "Question",null, new { style = "width:150px;", @class = "btn btn-primary" })</div>
+
+@foreach (var item in Model)
+{
+    <table class="table table-borderless" style="width:100%;">
+        <tbody>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => item.QuestionText)
+                </th>
+            </tr>
+            <tr>
+                <td style="border:solid gray 1px;">
+                    @Html.DisplayFor(m => item.ShortQuestionText)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => item.IdealResponse)
+                </th>
+            </tr>
+            <tr>
+                <td style="border:solid gray 1px;">
+                    @Html.DisplayFor(m => item.IdealResponse)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-light table-bordered">
+        <tbody>
+            <tr>
+                <th style="width:200px;">Student</th>
+                <th>Response</th>
+                <th style="min-width:250px;">Comments</th>
+                <th style="width:50px;">Mark</th>
+                <th></th>
+            </tr>
+            @foreach (var response in item.Responses)
+            {
+                <tr style="vertical-align:middle;">
+                    <td>
+                        @Html.DisplayFor(modelItem => response.Responder.DisplayName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => response.ShortResponseText)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => response.ShortComments)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => response.Mark)
+                    </td>
+                    <td style="text-align:right;line-height:30px;">
+                        @if (String.IsNullOrEmpty(response.ResponseText))
+                        {
+                            <i>No response yet</i>
+                        }
+                        else
+                        {
+                            <a style="width:150px;" class="btn btn-success" asp-action="Edit" asp-route-id="@response.Id">Review</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,39 @@
+﻿@model QHub.ViewModels.NewResponsesListViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Responses</h1>
+<b>@Html.DisplayNameFor(item =>item.Question.QuestionText)</b>
+<br />
+@Html.DisplayFor(item =>item.Question.QuestionText)
+<br />
+<b>@Html.DisplayNameFor(item =>item.Question.IdealResponse)</b>
+<br />
+@Html.DisplayFor(item =>item.Question.IdealResponse)
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Response")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Responses)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResponseText)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

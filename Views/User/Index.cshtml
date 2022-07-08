@@ -1,0 +1,47 @@
+﻿@model IEnumerable<QHub.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Users</h1>
+<hr/>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>
+                <h5>@Html.DisplayNameFor(m => m.DisplayName)</h5>
+            </th>
+            <th>
+                <h5>Teacher</h5>
+            </th>
+            <th>
+                <h5>Enrolled subjects</h5>
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="table-primary" style="vertical-align:middle;">
+                <td style="width:200px;">
+                    @Html.DisplayFor(m => item.DisplayName)
+                </td>
+                <td style="text-align:center;width:100px;">
+                    @Html.CheckBoxFor(m => item.IsTeacher, new { onclick = "return false" })
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var subject in item.Subjects)
+                        {
+                            <li>@Html.DisplayFor(modelItem => subject.Name)</li>
+                        }
+                    </ul>
+                </td>
+                <td style="text-align:right;width:100px;">
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

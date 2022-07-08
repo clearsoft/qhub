@@ -1,0 +1,47 @@
+﻿@model IEnumerable<QHub.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Questions</h1>
+<hr />
+<table class="table table-primary" style="vertical-align:middle">
+    @foreach (var subject in Model)
+    {
+        <tr>
+            <td>
+                <h5>@Html.DisplayFor(m => subject.Name)</h5>
+            </td>
+            <td style="text-align:right;">
+                <a class="btn btn-success" asp-action="Create" asp-route-id="@subject.Id">Add Question</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table class="table table-secondary table-bordered" style="vertical-align:middle">
+                    @foreach (var question in subject.Questions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => question.TopicName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => question.ShortQuestionText)
+                            </td>
+                            <td style="width:110px">
+                                @Html.DisplayFor(m => question.CloseDate)
+                            </td>
+                            <td style="text-align:right;width:260px;">
+                                <a class="btn btn-success" asp-action="Edit" asp-route-id="@question.Id">Edit</a>
+                                <a class="btn btn-warning" asp-action="Delete" asp-route-id="@question.Id">Delete</a>
+                                <a class="btn btn-dark" asp-action="IndexRedirect" asp-controller="Question" asp-route-id="@question.Id">Responses</a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+    }
+</table>

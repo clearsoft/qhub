@@ -1,0 +1,33 @@
+﻿@model QHub.Models.Subject
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>
+    Edit Subject
+</h1>
+<hr />
+<div class="col-md-4">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <h5><label asp-for="Name" class="control-label"></label></h5>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input style="width:150px;" type="submit" value="Save" class="btn btn-success" />
+            <button style="width:150px;" class="btn btn-primary" asp-action="Index">Cancel</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

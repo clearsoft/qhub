@@ -1,0 +1,82 @@
+﻿@using QHub.Classes
+@model IEnumerable<QHub.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Questions</h1>
+<hr />
+<table class="table">
+    <tbody>
+        @foreach (var subject in Model)
+        {
+            <tr>
+                <td colspan="4">
+                    <h5>@Html.DisplayFor(modelItem => subject.Name)</h5>
+                </td>
+            </tr>
+
+            @if (!subject.Questions.Any())
+            {
+                <tr>
+                    <td>There are no questions current for this subject</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" style="width:110px;">
+                        <b>Topic</b>
+                    </td>
+                    <td style="width:110px;text-align:center;">
+                        <b>Closing</b>
+                    </td>
+                </tr>
+                @foreach (var question in subject.Questions)
+                {
+                    <tr style="vertical-align:middle;" class="table-info">
+                        <td style="width:250px;">
+                            @Html.DisplayFor(modelItem => question.TopicName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => question.ShortQuestionText)
+                        </td>
+
+                        @if (User.IsInRole(Enumerations.QHubRoles.Student.ToString()))
+                        {
+                            @if (DateTime.Now <= question.CloseDate)
+                            {
+                                <td>
+
+                                    @if (question.Responses.Any()) // && !String.IsNullOrEmpty(question.Responses.First().ResponseText)) // TODO FIX needs to be for this user only
+                                    {
+                                        <a style="width:150px;" class="btn btn-success" asp-action="Respond" asp-route-id="@question.Id">Edit response</a>
+                                    }
+                                    else
+                                    {
+                                        <a style="width:150px;" class="btn btn-success" asp-action="Respond" asp-route-id="@question.Id">Respond</a>
+                                    }
+                                </td>
+                                <td style="width:110px;text-align:right;">
+                                    @Html.DisplayFor(modelItem => question.CloseDate)
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a style="width:150px;" class="btn btn-warning" asp-action="Review" asp-route-id="@question.Id">Review</a>
+                                </td>
+                                <td style="width:110px;text-align:center;">
+                                    <i>Closed</i>
+                                </td>
+                            }
+
+                        }
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>
