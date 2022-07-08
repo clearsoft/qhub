@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using QHub.Data;
 using QHub.Models;
 
-// First deployment to GitHub
+// First deployment to GitHub - seems successful
 
 var builder = WebApplication.CreateBuilder(args);
 
