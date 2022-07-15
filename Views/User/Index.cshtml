@@ -8,7 +8,7 @@
 <h1>Users</h1>
 <hr/>
 <table class="table">
-    <tbody>
+    <tbody style="text-align:center;width:100px;">
         <tr>
             <th>
                 <h5>@Html.DisplayNameFor(m => m.DisplayName)</h5>
@@ -23,23 +23,19 @@
         </tr>
         @foreach (var item in Model)
         {
-            <tr class="table-primary" style="vertical-align:middle;">
+            <tr class="table-primary" style="vertical-align:middle;padding:0px; margin:0px;">
                 <td style="width:200px;">
                     @Html.DisplayFor(m => item.DisplayName)
                 </td>
-                <td style="text-align:center;width:100px;">
+                <td style="text-align:center;width:100px; padding:0px; margin:0px;">
                     @Html.CheckBoxFor(m => item.IsTeacher, new { onclick = "return false" })
                 </td>
-                <td>
-                    <ul>
-                        @foreach (var subject in item.Subjects)
-                        {
-                            <li>@Html.DisplayFor(modelItem => subject.Name)</li>
-                        }
-                    </ul>
+                <td style="vertical-align:middle;padding:0px; margin:0px;">
+                        @String.Join(", ",item.Subjects.Select(s => s.Name))
                 </td>
-                <td style="text-align:right;width:100px;">
-                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <td style="text-align:right;padding:0px; margin:0px;">
+                    <a style="width:80px;" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a style="width:80px;" class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                 </td>
             </tr>
         }

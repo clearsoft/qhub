@@ -83,7 +83,7 @@ namespace QHub.Controllers
                 try
                 {
                     var user2 = await _context.Users.Include(u => u.Subjects).SingleOrDefaultAsync(u => u.Id == id);
-                    user2.UserName = user.UserName;
+                    //user2.UserName = user.UserName; // Not required and dangerous!
                     user2.Email = user.Email;
                     user2.FirstName = user.FirstName;
                     user2.LastName = user.LastName;
@@ -141,73 +141,38 @@ namespace QHub.Controllers
         }
 
         // GET: Subject/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string? id)
         {
-            if (id == null || _context.Subjects == null)
+            if (id == null || _context.Users == null)
             {
                 return NotFound();
             }
 
-            var subject = await _context.Subjects
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (subject == null)
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(subject);
+            return View(user);
         }
         // POST: Subject/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (_context.Subjects == null)
+            if (_context.Users == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Subjects'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Users'  is null.");
             }
-            var subject = await _context.Subjects.FindAsync(id);
-            if (subject != null)
+            var user = await _context.Users.Include(u => u.Subjects).FirstOrDefaultAsync(u => u.Id == id);
+            if (user != null)
             {
-                _context.Subjects.Remove(subject);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        // GET: Subject/Remove/5
-        public async Task<IActionResult> Remove(int? id)
-        {
-            if (id == null || _context.Subjects == null)
-            {
-                return NotFound();
-            }
-
-            var subject = await _context.Subjects.FindAsync(id);
-            if (subject == null)
-            {
-                return NotFound();
-            }
-
-            return View(subject);
-        }
-
-        // POST: Subject/Delete/5
-        [HttpPost, ActionName("Remove")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveConfirmed(int id)
-        {
-            if (_context.Subjects == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Subjects'  is null.");
-            }
-            var subject = await _context.Subjects.FindAsync(id);
-            if (subject != null)
-            {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var user = _context.Users.Find(userId);
-                subject.Users.Remove(user);
+                foreach (var subject in user.Subjects.ToList())
+                {
+                    user.Subjects.Remove(subject);
+                }
+                _context.Users.Remove(user);
             }
 
             await _context.SaveChangesAsync();

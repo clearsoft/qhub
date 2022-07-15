@@ -12,6 +12,7 @@
     {
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @Html.HiddenFor(m => m.User.Id)
+        @Html.HiddenFor(m => m.User.UserName)
         <table class="table" style="vertical-align:middle;">
             <tr>
                 <th style="width:150px;text-align:right;">

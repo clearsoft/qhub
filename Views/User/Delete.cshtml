@@ -1,4 +1,4 @@
-﻿@model QHub.Models.Response
+﻿@model QHub.Models.ApplicationUser
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,23 +12,23 @@
     <h4>Response</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comments)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comments)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mark)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DisplayName)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mark)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisplayName)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-primary" asp-action="Index">Cancel</a>
     </form>
 </div>

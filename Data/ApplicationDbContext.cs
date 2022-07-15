@@ -9,7 +9,7 @@ namespace QHub.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            
+
         }
 
         public DbSet<Subject>? Subjects { get; set; }
@@ -26,5 +26,11 @@ namespace QHub.Data
                 optionsBuilder.UseSqlite(@"Data Source=\Data\QHub.db; providerName='System.Data.SQLite';");
             }
         }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<ApplicationUser>()
+        //        .HasOne()
+        //}
     }
 }

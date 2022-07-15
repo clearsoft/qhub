@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.btn {
+    line-height:10px;
+}
+
+td {
+    line-height:15px;
+}

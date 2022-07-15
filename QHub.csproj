@@ -31,7 +31,6 @@
     <Content Remove="Views\Subject\Details.cshtml" />
     <Content Remove="Views\Subject\Remove.cshtml" />
     <Content Remove="Views\User\Create.cshtml" />
-    <Content Remove="Views\User\Delete.cshtml" />
     <Content Remove="Views\User\Details.cshtml" />
     <Content Remove="Views\User\Respond.cshtml" />
   </ItemGroup>
