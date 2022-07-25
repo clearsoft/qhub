@@ -21,6 +21,7 @@ namespace QHub.Models
         public List<Subject> Subjects { get; set; } = new List<Subject>();
 
         [NotMapped]
+        [Display(Name = "Username")]
         public string DisplayName =>
             String.IsNullOrEmpty(LastName)
             ? Email
@@ -28,5 +29,15 @@ namespace QHub.Models
 
         [NotMapped]
         public bool IsTeacher { get; set; }
+
+        [NotMapped]
+        public string ShortSubjectList
+        {
+            get
+            {
+                string subjectList = @String.Join(", ", Subjects.Select(s => s.Name));
+                return subjectList.Length <= 100 ? subjectList : subjectList.Substring(0, 100) + "...";
+            }
+        }
     }
 }

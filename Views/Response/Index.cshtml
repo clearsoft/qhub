@@ -11,7 +11,7 @@
 
 @foreach (var item in Model)
 {
-    <table class="table table-borderless" style="width:100%;">
+    <table class="table table-borderless" style="width:100%;height:20%">
         <tbody>
             <tr>
                 <th>
@@ -19,7 +19,7 @@
                 </th>
             </tr>
             <tr>
-                <td style="border:solid gray 1px;">
+                <td style="border:solid gray 1px;padding:20px;white-space:normal;">
                     @Html.DisplayFor(m => item.ShortQuestionText)
                 </td>
             </tr>
@@ -29,48 +29,36 @@
                 </th>
             </tr>
             <tr>
-                <td style="border:solid gray 1px;">
+                <td style="border:solid gray 1px;padding:20px;white-space:normal;">
                     @Html.DisplayFor(m => item.IdealResponse)
                 </td>
             </tr>
         </tbody>
     </table>
-    <table class="table table-light table-bordered">
-        <tbody>
-            <tr>
-                <th style="width:200px;">Student</th>
-                <th>Response</th>
-                <th style="min-width:250px;">Comments</th>
-                <th style="width:50px;">Mark</th>
-                <th></th>
-            </tr>
-            @foreach (var response in item.Responses)
-            {
-                <tr style="vertical-align:middle;">
-                    <td>
-                        @Html.DisplayFor(modelItem => response.Responder.DisplayName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => response.ShortResponseText)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => response.ShortComments)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => response.Mark)
-                    </td>
-                    <td style="text-align:right;line-height:30px;">
-                        @if (String.IsNullOrEmpty(response.ResponseText))
-                        {
-                            <i>No response yet</i>
-                        }
-                        else
-                        {
-                            <a style="width:150px;" class="btn btn-success" asp-action="Edit" asp-route-id="@response.Id">Review</a>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div style="overflow-y:scroll;">
+        <table class="table">
+            <tbody cellpadding="0" cellspacing="0">
+                @foreach (var response in item.Responses)
+                {
+                    <tr class="table-dark" style="vertical-align:middle;">
+                        <td>
+                            @Html.DisplayFor(modelItem => response.Responder.DisplayName)
+                        </td>
+                        <td style="text-align:right;">
+                            <b>Mark:</b> @Html.TextBoxFor(modelItem => response.Mark, "{0:N1}")
+                        </td>
+                    </tr>
+                    <tr style="vertical-align:top;">
+                        <td style="width:50%;white-space:pre-wrap;vertical-align:top;text-align:left;">
+                            @response.ResponseText
+                        </td>
+                        <td style="width:50%;">
+                            @Html.TextAreaFor(modelItem => response.Comments, new { style="width:100%;height:100%;"})
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
 }

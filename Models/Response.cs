@@ -11,7 +11,7 @@ namespace QHub.Models
         public string? ResponseText { get; set; }
 
         [NotMapped]
-        public string? ShortResponseText => ResponseText == null || ResponseText.Length < 300 ? ResponseText : ResponseText.Substring(0, 300) + "...";
+        public string? ShortResponseText => ResponseText == null || ResponseText.Length < 50 ? ResponseText : ResponseText.Trim().Substring(0, 50) + "...";
 
         public ApplicationUser? Responder { get; set; }
 
@@ -19,7 +19,7 @@ namespace QHub.Models
         public string? Comments { get; set; }
 
         [NotMapped]
-        public string? ShortComments => Comments == null || Comments.Length < 300 ? Comments : Comments.Substring(0, 300) + "...";
+        public string? ShortComments => Comments == null || Comments.Length < 50 ? Comments : Comments.Substring(0, 50) + "...";
 
         [DisplayFormat(DataFormatString = "{0:N}", ApplyFormatInEditMode = true)]
         [Range(0, 10, ErrorMessage = "Score must be between 0 and 10")]

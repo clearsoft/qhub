@@ -16,7 +16,7 @@ namespace QHub.Models
         [Display(Name = "Research Question")]
         public string QuestionText { get; set; }
 
-        public string? ShortQuestionText => QuestionText == null || QuestionText.Length < 300 ? QuestionText : QuestionText.Substring(0,300) + "...";
+        public string? ShortQuestionText => QuestionText == null || QuestionText.Length < 100 ? QuestionText : QuestionText.Substring(0,100) + "...";
 
         [Display(Name = "Ideal Response")]
         public string IdealResponse { get; set; }

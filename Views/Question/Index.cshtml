@@ -7,20 +7,27 @@
 
 <h1>Questions</h1>
 <hr />
-<table class="table table-primary" style="vertical-align:middle">
+<table class="table table-borderless" style="vertical-align:middle;">
     @foreach (var subject in Model)
     {
         <tr>
-            <td>
+            <th>
                 <h5>@Html.DisplayFor(m => subject.Name)</h5>
-            </td>
-            <td style="text-align:right;">
+            </th>
+            <th style="text-align:right;">
                 <a class="btn btn-success" asp-action="Create" asp-route-id="@subject.Id">Add Question</a>
-            </td>
+            </th>
         </tr>
         <tr>
             <td colspan="2">
-                <table class="table table-secondary table-bordered" style="vertical-align:middle">
+                <table class="table table-info table-borderless" style="vertical-align:middle;border-bottom: solid black 1px;">
+                    @if (subject.Questions.Any())
+                    {
+                        <th width="170">Topic</th>
+                        <th>Question</th>
+                        <th width="100">Closing Date</th>
+                        <th width="260"></th>
+                    }
                     @foreach (var question in subject.Questions)
                     {
                         <tr>
@@ -30,13 +37,13 @@
                             <td>
                                 @Html.DisplayFor(m => question.ShortQuestionText)
                             </td>
-                            <td style="width:110px">
+                            <td>
                                 @Html.DisplayFor(m => question.CloseDate)
                             </td>
-                            <td style="text-align:right;width:260px;">
-                                <a class="btn btn-success" asp-action="Edit" asp-route-id="@question.Id">Edit</a>
-                                <a class="btn btn-warning" asp-action="Delete" asp-route-id="@question.Id">Delete</a>
-                                <a class="btn btn-dark" asp-action="IndexRedirect" asp-controller="Question" asp-route-id="@question.Id">Responses</a>
+                            <td style="text-align:right;">
+                                <a class="btn btn-success" style="width:70px;" asp-action="Edit" asp-route-id="@question.Id">Edit</a>
+                                <a class="btn btn-danger" style="width:70px;" asp-action="Delete" asp-route-id="@question.Id">Delete</a>
+                                <a class="btn btn-primary" style="width:120px;" asp-action="IndexRedirect" asp-controller="Question" asp-route-id="@question.Id">Responses (@question.Responses.Count)</a>
                             </td>
                         </tr>
                     }
