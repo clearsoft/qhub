@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<QHub.Models.ApplicationUser>
+@using NonFactors.Mvc.Grid
 
 @{
     ViewData["Title"] = "Index";
@@ -7,6 +8,19 @@
 
 <h1>Users</h1>
 <hr/>
+@(Html.Grid(Model)
+            .Build(columns =>
+            {
+                columns.Add(model => model.DisplayName).Width(150).Titled("Name");
+                columns.Add(model => model.IsTeacher).Width(150).Titled("Teacher");
+                columns.Add(model => model.ShortSubjectList).Width(150).Titled("Subjects");
+            })
+            .Using(GridFilterMode.Header)
+            .Empty("No data found")
+            .Filterable()
+            .Sortable()
+            .Pageable()
+        )
 <table class="table">
     <tbody style="text-align:center;width:100px;">
         <tr>

@@ -1,0 +1,5 @@
+﻿@model IEnumerable<Question>
+@foreach (var q in Model.ToList())
+{
+    @Html.EditorFor(item => q.Responses)
+}

@@ -1,0 +1,23 @@
+﻿@model Response
+<div>
+    <table class="table">
+        <tbody cellpadding="0" cellspacing="0">
+            <tr class="table-dark" style="vertical-align:middle;">
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Responder.DisplayName)
+                </td>
+                <td style="text-align:right;">
+                    <b>Mark:</b> @Html.TextBoxFor(modelItem => Model.Mark, "{0:N1}", new { style="width:30px;"})
+                </td>
+            </tr>
+            <tr style="vertical-align:top;">
+                <td style="white-space:normal;overflow-y:scroll;display:flex;height:135px;">
+                    @Model.ResponseText
+                </td>
+                <td class="flex-grow-1" style="width:50%;vertical-align:top;">
+                    @Html.TextAreaFor(modelItem => Model.Comments, new { @class="form-control flex-grow", rows=5})
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

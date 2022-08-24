@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<QHub.Models.Subject>
-
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -43,7 +42,7 @@
                             <td style="text-align:right;">
                                 <a class="btn btn-success" style="width:70px;" asp-action="Edit" asp-route-id="@question.Id">Edit</a>
                                 <a class="btn btn-danger" style="width:70px;" asp-action="Delete" asp-route-id="@question.Id">Delete</a>
-                                <a class="btn btn-primary" style="width:120px;" asp-action="IndexRedirect" asp-controller="Question" asp-route-id="@question.Id">Responses (@question.Responses.Count)</a>
+                                <a class="btn btn-primary" style="width:140px;" asp-action="IndexRedirect" asp-controller="Question" asp-route-id="@question.Id">@question.Responses.Count Responses</a>
                             </td>
                         </tr>
                     }

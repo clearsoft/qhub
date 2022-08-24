@@ -1,0 +1,14 @@
+<publishData>
+	<publishProfile profileName="qhub - Web Deploy" publishMethod="MSDeploy" publishUrl="qhub.scm.azurewebsites.net:443" msdeploySite="qhub" userName="$qhub" userPWD="L9rjrGM6oPj9hXrqxditdBK8uMKrPcaauXnaRbXPSsNrmN1aWjzTwxcBJvAm" destinationAppUrl="https://qhub.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites">
+		<databases />
+	</publishProfile>
+	<publishProfile profileName="qhub - FTP" publishMethod="FTP" publishUrl="ftps://waws-prod-ml1-019.ftp.azurewebsites.windows.net/site/wwwroot" ftpPassiveMode="True" userName="qhub\$qhub" userPWD="L9rjrGM6oPj9hXrqxditdBK8uMKrPcaauXnaRbXPSsNrmN1aWjzTwxcBJvAm" destinationAppUrl="https://qhub.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites">
+		<databases />
+	</publishProfile>
+	<publishProfile profileName="qhub - Zip Deploy" publishMethod="ZipDeploy" publishUrl="qhub.scm.azurewebsites.net:443" userName="$qhub" userPWD="L9rjrGM6oPj9hXrqxditdBK8uMKrPcaauXnaRbXPSsNrmN1aWjzTwxcBJvAm" destinationAppUrl="https://qhub.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites">
+		<databases />
+	</publishProfile>
+	<publishProfile profileName="qhub - ReadOnly - FTP" publishMethod="FTP" publishUrl="ftps://waws-prod-ml1-019dr.ftp.azurewebsites.windows.net/site/wwwroot" ftpPassiveMode="True" userName="qhub\$qhub" userPWD="L9rjrGM6oPj9hXrqxditdBK8uMKrPcaauXnaRbXPSsNrmN1aWjzTwxcBJvAm" destinationAppUrl="https://qhub.azurewebsites.net" SQLServerDBConnectionString="" mySQLDBConnectionString="" hostingProviderForumLink="" controlPanelLink="http://windows.azure.com" webSystem="WebSites">
+		<databases />
+	</publishProfile>
+</publishData>

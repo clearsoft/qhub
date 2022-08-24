@@ -94,22 +94,22 @@ namespace QHub.Controllers
         // POST: Response/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Respond(int? id, NewResponseViewModel viewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var userId = User.Identity.GetUserId();
-        //        var user = _context.Users.Find(userId);
-        //        viewModel.StudentResponse.Responder = user;
-        //        var question = await _context.Questions.FindAsync(id);
-        //        question.Responses.Add(viewModel.StudentResponse);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index), new { id });
-        //    }
-        //    return View(viewModel);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(List<Question> model)
+        {
+            if (ModelState.IsValid)
+            {
+                //var userId = User.Identity.GetUserId();
+                //var user = _context.Users.Find(userId);
+                //viewModel.StudentResponse.Responder = user;
+                //var question = await _context.Questions.FindAsync(id);
+                //question.Responses.Add(viewModel.StudentResponse);
+                //await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index), new { id });
+            }
+            return View(model);
+        }
 
         // GET: Response/Edit/5
         public async Task<IActionResult> Edit(int? id)
